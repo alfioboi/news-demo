@@ -14,7 +14,7 @@ export class NotizieEffects {
       ofType(NotizieActionTypes.leggiUltimeNotizie),
       mergeMap(() =>
         this.httpClient
-          .get(`https://api.bing.microsoft.com/api/v7/news/search?q=us+politics`)
+          .get(`https:`)
           .pipe(
             map((news) => {
               console.log(news, `News`);

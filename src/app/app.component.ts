@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WebsocketService } from './shared/services/websocket.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'notizie-demo';
+  constructor(private wsService: WebsocketService) {
+    wsService.getFeeds();
+  }
 }
