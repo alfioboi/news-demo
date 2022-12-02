@@ -1,8 +1,14 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Store, StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { interval, of, tap } from 'rxjs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import NotizieActionTypes from './shared/store/notizie-action-types';
+import { notizieReducer, notizieState } from './shared/store/notizie-reducer';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -10,9 +16,28 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot([notizieReducer]),
+    StoreDevtoolsModule.instrument({maxAge: 25, name: 'Notizie Store'}),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (store: Store<notizieState>) => {
+        return () => {
+          interval(10000).pipe(
+            tap(() => {
+              store.dispatch(NotizieActionTypes.leggiUltimeNotizie());
+            })
+          ).subscribe();
+          return of(true)
+        };
+      },
+      multi: true,
+      deps: [Store, HttpClient]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
