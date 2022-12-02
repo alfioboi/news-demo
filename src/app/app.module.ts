@@ -7,8 +7,10 @@ import { interval, of, tap } from 'rxjs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import NotizieActionTypes from './shared/store/notizie-action-types';
-import { notizieReducer, notizieState } from './shared/store/notizie-reducer';
+import { notizieReducer, notizieState } from './shared/store/notizie.reducer';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { NotizieEffects } from './shared/store/notizie.effects';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     StoreModule.forRoot([notizieReducer]),
     StoreDevtoolsModule.instrument({maxAge: 25, name: 'Notizie Store'}),
-    HttpClientModule
+    HttpClientModule,
+    EffectsModule.forRoot([NotizieEffects])
   ],
   providers: [
     {
