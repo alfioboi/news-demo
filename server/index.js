@@ -1,5 +1,5 @@
 import Parser from 'rss-parser';
-import { interval, mergeMap } from 'rxjs';
+import { timer, mergeMap } from 'rxjs';
 import WebSocket, { WebSocketServer } from 'ws';
 const wss = new WebSocketServer({ port: 8081 });
 
@@ -10,7 +10,7 @@ wss.setMaxListeners(0)
 
 let parser = new Parser();
 
-interval(10000).pipe(
+timer(0, 10000).pipe(
   mergeMap(() => parser.parseURL(`https://news.google.com/rss?hl=it&gl=IT&ceid=IT:it`).then(
     (feeds) => {
       wss.clients.forEach((client) => {
