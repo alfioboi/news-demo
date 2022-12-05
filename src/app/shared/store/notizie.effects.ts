@@ -9,20 +9,4 @@ export class NotizieEffects {
   http: any;
   constructor(private actions$: Actions, private httpClient: HttpClient) {}
 
-  leggiUltimeNotizie$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(NotizieActionTypes.leggiUltimeNotizie),
-      mergeMap(() =>
-        this.httpClient
-          .get(`https:`)
-          .pipe(
-            map((news) => {
-              console.log(news, `News`);
-              return NotizieActionTypes.ultimeNotizieLette({ payload: news })}
-            ),
-            catchError(() => EMPTY)
-          )
-      )
-    )
-  );
 }

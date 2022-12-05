@@ -1,4 +1,4 @@
 import { createAction, props } from "@ngrx/store";
+import { Feed } from "../models/feed.model";
 
-export const leggiUltimeNotizie = createAction(`[news]: carica news`);
-export const ultimeNotizieLette = createAction(`[news]: UltimeNotizieLette`, props<{ payload: any}>());
+export const caricaFeed = createAction(`[feeds]: carica feed`, props<{ payload: Feed}>());

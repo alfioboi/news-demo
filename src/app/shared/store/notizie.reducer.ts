@@ -1,15 +1,23 @@
 import { createReducer, on } from "@ngrx/store";
+import { Feed } from "../models/feed.model";
 import NotizieActionTypes from "./notizie-action-types";
-import { leggiUltimeNotizie } from "./notizie.actions";
+import { cloneDeep } from 'lodash'
 
 export interface notizieState {
-  news?: unknown
+  feeds: Feed[]
 }
-const initialNotizieState: notizieState = {};
+const initialNotizieState: notizieState = {
+  feeds: []
+};
 
 export const notizieReducer = createReducer(
   initialNotizieState,
-  on(NotizieActionTypes.leggiUltimeNotizie, (state, action) => {
-    return state;
+  on(NotizieActionTypes.caricaFeed, (state, action) => {
+    const newState = cloneDeep(state);
+    if(! state?.feeds?.find(i => i.guid === action.payload.guid)) {
+      newState?.feeds ? newState.feeds?.push(action.payload): newState.feeds = [action.payload];
+    }
+    return newState;
   })
 )
+
