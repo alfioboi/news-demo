@@ -11,7 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { NotizieEffects } from './shared/store/notizie.effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot([notizieReducer]),
+    StoreModule.forRoot({news: notizieReducer}),
     StoreDevtoolsModule.instrument({maxAge: 25, name: 'Notizie Store'}),
     HttpClientModule,
     EffectsModule.forRoot([NotizieEffects]),

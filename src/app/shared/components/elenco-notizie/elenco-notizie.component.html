@@ -1,8 +1,7 @@
-<div class="content">
+<div class="content container p-5" >
   <div fxLayout="row wrap" *ngIf="(elencoNotizie$ | async)?.length">
-    <div fxFlex="25%" *ngFor="let feed of (elencoNotizie$ | async)">
+    <div fxFlex="25%" *ngFor="let feed of elencoNotizie$ | async">
       <app-notizia [notizia]="feed"></app-notizia>
-      {{feed | json}}
     </div>
   </div>
-  </div>
+</div>

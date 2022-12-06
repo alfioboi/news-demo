@@ -1,13 +1,12 @@
-<mat-card class="mat-elevation-z4" >
+<mat-card class="mat-elevation-z4 m-5" >
   <mat-card-header>
     <mat-card-title>{{notizia.title}}</mat-card-title>
+    <mat-card-subtitle>{{notizia.isoDate | date: 'dd/MM/yyyy hh:mm a'}} </mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="./../assets/images/mountains.jpg">
   <mat-card-content>
-    <p [innerHTML]="notizia.contentSnippet"></p>
+    <p>{{notizia.contentSnippet}}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+    <button mat-button>Dettaglio</button>
   </mat-card-actions>
 </mat-card>

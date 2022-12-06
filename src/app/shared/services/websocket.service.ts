@@ -4,14 +4,14 @@ import { select, Store } from '@ngrx/store';
 import { EMPTY, filter, first, forkJoin, mergeMap, tap } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { FeedContainer } from '../models/feed-container.model';
-import { notizieState } from '../store/notizie.reducer';
+import { NotizieState } from '../store/notizie.reducer';
 import NotizieActionTypes from '../store/notizie-action-types';
 import { getFeedByGuid } from '../store/notizie-selectors';
 @Injectable({providedIn: 'root'})
 export class WebsocketService {
   myWebSocket: WebSocketSubject<any> = webSocket('ws://localhost:8081');
 
-  constructor(private store: Store<notizieState>){}
+  constructor(private store: Store<NotizieState>){}
 
   getFeeds() {
     this.myWebSocket.asObservable().pipe(

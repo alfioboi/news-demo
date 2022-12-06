@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { map, Observable, of, Subject, takeUntil, tap } from 'rxjs';
+import { cloneDeep } from 'lodash';
+import { map, Observable, of, tap } from 'rxjs';
 import { Feed } from '../../models/feed.model';
-import { selectAllFeeds, selectFeeds } from '../../store/notizie-selectors';
-import { notizieState } from '../../store/notizie.reducer';
+import { selectAllFeeds } from '../../store/notizie-selectors';
+import { NotizieState } from '../../store/notizie.reducer';
 
 @Component({
   selector: 'app-elenco-notizie',
@@ -12,14 +13,12 @@ import { notizieState } from '../../store/notizie.reducer';
 })
 export class ElencoNotizieComponent implements OnInit {
   elencoNotizie$: Observable<Feed[]> = of([]);
-  constructor(private store: Store<notizieState>) {}
+  constructor(private store: Store<NotizieState>) {}
   ngOnInit(): void {
     this.elencoNotizie$ = this.store.pipe(
-      tap(state => console.log(`the state`, state )),
-      map(state => state.feeds),
-      tap((feeds) => {
-        console.log(`The feeds`, feeds);
-      })
+      select(selectAllFeeds),
+      map((feeds: Feed[]) => cloneDeep(feeds).sort((a, b) => a.isoDate > b.isoDate ? -1 : 1)),
+      map((feeds: Feed[]) => cloneDeep(feeds).slice(0, 8))
     );
   }
 }
