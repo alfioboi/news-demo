@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { NotizieEffects } from './shared/store/notizie.effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
+import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     StoreDevtoolsModule.instrument({maxAge: 25, name: 'Notizie Store'}),
     HttpClientModule,
     EffectsModule.forRoot([NotizieEffects]),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

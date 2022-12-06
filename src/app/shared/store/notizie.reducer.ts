@@ -13,11 +13,10 @@ const initialNotizieState: notizieState = {
 export const notizieReducer = createReducer(
   initialNotizieState,
   on(NotizieActionTypes.caricaFeed, (state, action) => {
-    const newState = cloneDeep(state);
-    if(! state?.feeds?.find(i => i.guid === action.payload.guid)) {
-      newState?.feeds ? newState.feeds?.push(action.payload): newState.feeds = [action.payload];
+    if(!state?.feeds?.find(i => i.guid === action.payload.guid)) {
+      return {...state, feeds: [...state.feeds, action.payload]};
     }
-    return newState;
+    return {...state};
   })
 )
 

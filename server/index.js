@@ -16,6 +16,7 @@ timer(0, 10000).pipe(
       wss.clients.forEach((client) => {
         if (client !== wss && client.readyState === WebSocket.OPEN) {
           client.send(JSON.stringify(feeds));
+          console.log(`Inviati i feed`, feeds)
         }
       });
       return feeds;
