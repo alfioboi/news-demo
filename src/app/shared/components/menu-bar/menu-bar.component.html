@@ -1,0 +1,17 @@
+<mat-menu #appMenu="matMenu">
+  <ng-template matMenuContent>
+    <a mat-menu-item routerLink="/ultime-notizie" routerLinkActive="active-link">
+      <mat-icon>home</mat-icon>
+      <span>Ultime notizie</span>
+    </a>
+    <a mat-menu-item routerLink="/archivio" routerLinkActive="active-link">
+      <mat-icon>book</mat-icon>
+      <span>Archivio</span>
+    </a>
+  </ng-template>
+</mat-menu>
+<nav>
+  <button mat-icon-button [matMenuTriggerFor]="appMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</nav>

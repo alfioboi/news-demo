@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { notizieReducer } from './shared/store/notizie.reducer';
@@ -14,21 +13,21 @@ import { SharedModule } from './shared/shared.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    StoreModule.forRoot({news: notizieReducer}),
-    StoreDevtoolsModule.instrument({maxAge: 25, name: 'Notizie Store'}),
-    HttpClientModule,
-    EffectsModule.forRoot([NotizieEffects]),
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    SharedModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        StoreModule.forRoot({ news: notizieReducer }),
+        StoreDevtoolsModule.instrument({ maxAge: 25, name: 'Notizie Store' }),
+        HttpClientModule,
+        EffectsModule.forRoot([NotizieEffects]),
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        SharedModule
+    ]
 })
 export class AppModule { }
