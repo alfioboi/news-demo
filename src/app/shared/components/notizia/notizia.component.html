@@ -7,6 +7,6 @@
     <p>{{notizia.contentSnippet}}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>Dettaglio</button>
+    <button mat-button (click)="vaiADettaglio(notizia.guid)">Dettaglio</button>
   </mat-card-actions>
 </mat-card>

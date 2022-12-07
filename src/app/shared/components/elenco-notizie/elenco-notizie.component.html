@@ -1,7 +1,5 @@
-<div class="content container p-5" >
-  <div fxLayout="row wrap" *ngIf="(elencoNotizie$ | async)?.length">
-    <div fxFlex="25%" *ngFor="let feed of elencoNotizie$ | async">
-      <app-notizia [notizia]="feed"></app-notizia>
-    </div>
-  </div>
-</div>
+<mat-grid-list cols="12" rows="12"  [gutterSize]="'10px'" *ngIf="(elencoNotizie$ | async)?.length">
+  <mat-grid-tile colspan="3" rowspan="3" *ngFor="let feed of elencoNotizie$ | async">
+    <app-notizia [notizia]="feed"></app-notizia>
+  </mat-grid-tile>
+</mat-grid-list>

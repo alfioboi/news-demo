@@ -1,1 +1,20 @@
-<p>dettaglio-notizia works!</p>
+<mat-grid-list cols="12" rows="12" rowHeight="1:1">
+  <mat-grid-tile colspan="3" rowspan="3"></mat-grid-tile>
+  <mat-grid-tile colspan="6" rowspan="6">
+    <mat-card *ngIf="notiziaCorrente$ | async">
+      <mat-card-header>
+        <mat-card-title>{{ (notiziaCorrente$ | async)?.title }}</mat-card-title>
+        <mat-card-subtitle>{{
+          (notiziaCorrente$ | async)?.isoDate | date : "dd/MM/yyyy hh:mm a"
+        }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content
+        [innerHTML]="(notiziaCorrente$ | async)?.content"
+      ></mat-card-content>
+      <mat-card-footer>
+        {{ (notiziaCorrente$ | async)?.contentSnippet }}
+      </mat-card-footer>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3" rowspan="3"></mat-grid-tile>
+</mat-grid-list>
