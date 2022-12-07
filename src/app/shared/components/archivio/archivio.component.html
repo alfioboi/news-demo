@@ -24,6 +24,4 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="vaiADettaglio(row.guid)">
     </mat-row>
   </mat-table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 15, 20, 25, 50, 100]" [pageSize]="15"></mat-paginator>
 </div>

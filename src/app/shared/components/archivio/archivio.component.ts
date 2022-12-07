@@ -13,12 +13,10 @@ import { NotizieState } from '../../store/notizie.reducer';
   templateUrl: './archivio.component.html',
   styleUrls: ['./archivio.component.scss']
 })
-export class ArchivioComponent implements AfterViewInit {
+export class ArchivioComponent {
   displayedColumns = ["guid", "isoDate", "title"];
   dataSource!: MatTableDataSource<Feed>;
   @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-  @ViewChild(MatSort)
   sort!: MatSort;
   constructor(
     private store: Store<NotizieState>,
@@ -31,12 +29,6 @@ export class ArchivioComponent implements AfterViewInit {
         this.dataSource = new MatTableDataSource(feeds);
       }
     })
-  }
-  ngAfterViewInit() {
-    if(this.dataSource) {
-      this.dataSource.paginator = this?.paginator;
-      this.dataSource.sort = this?.sort;
-    }
   }
   vaiADettaglio(arg0: string) {
     this.router.navigate(['dettaglio', arg0]);
