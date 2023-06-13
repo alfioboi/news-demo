@@ -1,6 +1,9 @@
 # NotizieDemo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.1.
+Questo progetto è stato realizzato con 
+* [Angular CLI](https://github.com/angular/angular-cli) version 15.0.1.
+* Node 14.20.0
+* 
 
 ## Development server
 

@@ -6,7 +6,7 @@ import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { FeedContainer } from '../models/feed-container.model';
 import { NotizieState } from '../store/notizie.reducer';
 import NotizieActionTypes from '../store/notizie-action-types';
-import { getFeedByGuid } from '../store/notizie-selectors';
+import {getSingleFeed} from '../store/notizie-selectors';
 @Injectable({providedIn: 'root'})
 export class WebsocketService {
   myWebSocket: WebSocketSubject<any> = webSocket('ws://localhost:8081');
@@ -19,7 +19,7 @@ export class WebsocketService {
         if(feeds?.items?.length) {
           return forkJoin(feeds.items.map(item => {
             return this.store.pipe(
-              select(getFeedByGuid, {guid: item.guid} ),
+              select(getSingleFeed(item.guid)),
               tap((loaded) => {
                 if (!loaded) {
                   this.store.dispatch(NotizieActionTypes.caricaFeed({payload: item}));
